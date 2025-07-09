@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GameVerse</title>
+  <title>Rizz Core</title>
   <style>
-    /* Base Reset */
     * {
       margin: 0;
       padding: 0;
@@ -16,6 +15,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #0f0f0f;
       color: #fff;
+      overflow-x: hidden;
     }
 
     header {
@@ -27,11 +27,18 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     header h1 {
       font-size: 1.8em;
       color: #00ffe1;
+      animation: fadeIn 1.2s ease-in;
     }
 
     nav a, .btn {
@@ -44,6 +51,7 @@
       cursor: pointer;
       font-size: 1em;
       transition: color 0.3s;
+      animation: fadeIn 1.2s ease-in;
     }
 
     nav a:hover, .btn:hover {
@@ -57,6 +65,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      animation: zoomIn 1.5s ease;
     }
 
     .hero h2 {
@@ -64,6 +73,7 @@
       background: rgba(0,0,0,0.6);
       padding: 20px;
       border-radius: 10px;
+      animation: fadeInUp 1.5s ease-in;
     }
 
     .section {
@@ -89,11 +99,13 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 10px #000;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeInUp 1s ease-in;
     }
 
     .game-card:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffe1;
     }
 
     .game-card img {
@@ -112,65 +124,23 @@
       padding: 20px;
       background-color: #1a1a1a;
       color: #888;
+      animation: fadeIn 1s ease-in;
     }
 
-    /* Modal Forms */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    .modal-content {
-      background-color: #1a1a1a;
-      margin: 10% auto;
-      padding: 30px;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 10px;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .modal-content h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #00ffe1;
-    }
-
-    .modal-content input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      background: #2a2a2a;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-    }
-
-    .modal-content button {
-      width: 100%;
-      padding: 10px;
-      background-color: #00ffe1;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .close {
-      color: #fff;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
+    @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     @media (max-width: 768px) {
@@ -187,14 +157,14 @@
 <body>
 
   <header>
-    <h1>GameVerse</h1>
+    <h1>Rizz Core</h1>
     <nav>
       <a href="#">Home</a>
       <a href="#">Games</a>
       <a href="#">News</a>
       <a href="#">Contact</a>
-      <button class="btn" onclick="openModal('loginModal')">Login</button>
-      <button class="btn" onclick="openModal('signupModal')">Sign Up</button>
+      <button class="btn" onclick="alert('Login modal here')">Login</button>
+      <button class="btn" onclick="alert('Signup modal here')">Sign Up</button>
     </nav>
   </header>
 
@@ -225,49 +195,8 @@
   </section>
 
   <footer>
-    &copy; 2025 GameVerse. All rights reserved.
+    &copy; 2025 Rizz Core. All rights reserved.
   </footer>
-
-  <!-- Login Modal -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('loginModal')">&times;</span>
-      <h2>Login</h2>
-      <input type="text" placeholder="Username or Email" />
-      <input type="password" placeholder="Password" />
-      <button>Login</button>
-    </div>
-  </div>
-
-  <!-- Signup Modal -->
-  <div id="signupModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('signupModal')">&times;</span>
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button>Sign Up</button>
-    </div>
-  </div>
-
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = "block";
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-
-    // Close modals when clicking outside
-    window.onclick = function(event) {
-      const login = document.getElementById('loginModal');
-      const signup = document.getElementById('signupModal');
-      if (event.target == login) login.style.display = "none";
-      if (event.target == signup) signup.style.display = "none";
-    }
-  </script>
 
 </body>
 </html>
