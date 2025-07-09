@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GameVerse</title>
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+    }
+
+    header {
+      background: #1a1a1a;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.8em;
+      color: #00ffe1;
+    }
+
+    nav a, .btn {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, .btn:hover {
+      color: #00ffe1;
+    }
+
+    .hero {
+      background: url('https://wallpapercave.com/wp/wp11280417.jpg') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .section {
+      padding: 40px;
+      background-color: #121212;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #00ffe1;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .game-card {
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #000;
+      transition: transform 0.3s;
+    }
+
+    .game-card:hover {
+      transform: scale(1.05);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .game-card h3 {
+      padding: 15px;
+      font-size: 1.3em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1a1a1a;
+      color: #888;
+    }
+
+    /* Modal Forms */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background-color: #1a1a1a;
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+
+    .modal-content h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00ffe1;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #2a2a2a;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00ffe1;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .close {
+      color: #fff;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2em;
+      }
+
+      nav a {
+        margin-left: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>GameVerse</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Games</a>
+      <a href="#">News</a>
+      <a href="#">Contact</a>
+      <button class="btn" onclick="openModal('loginModal')">Login</button>
+      <button class="btn" onclick="openModal('signupModal')">Sign Up</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to the Ultimate Gaming World</h2>
+  </section>
+
+  <section class="section">
+    <h2>Top Games</h2>
+    <div class="games">
+      <div class="game-card">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg" alt="CSGO">
+        <h3>Counter Strike 2</h3>
+      </div>
+      <div class="game-card">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg" alt="COD">
+        <h3>Call of Duty: Warzone</h3>
+      </div>
+      <div class="game-card">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA V">
+        <h3>GTA V</h3>
+      </div>
+      <div class="game-card">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/812140/header.jpg" alt="AC Odyssey">
+        <h3>Assassin's Creed Odyssey</h3>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 GameVerse. All rights reserved.
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Login</h2>
+      <input type="text" placeholder="Username or Email" />
+      <input type="password" placeholder="Password" />
+      <button>Login</button>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('signupModal')">&times;</span>
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Username" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button>Sign Up</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+      const login = document.getElementById('loginModal');
+      const signup = document.getElementById('signupModal');
+      if (event.target == login) login.style.display = "none";
+      if (event.target == signup) signup.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
