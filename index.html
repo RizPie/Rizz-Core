@@ -1,251 +1,612 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rizz Core</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    header {
-      background-color: #1a1a1a;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      animation: slideDown 1s ease forwards;
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    header h1 {
-      font-size: 1.8em;
-      color: #00ffe1;
-    }
-
-    nav a, .btn {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: 1em;
-      transition: color 0.3s;
-    }
-
-    nav a:hover, .btn:hover {
-      color: #00ffe1;
-    }
-
-    .btn {
-      background: none;
-      border: 1px solid #00ffe1;
-      border-radius: 5px;
-      padding: 6px 12px;
-    }
-
-    .section {
-      padding: 40px;
-    }
-
-    .games-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .game-card {
-      background-color: #1a1a1a;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px #000;
-      width: 250px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .game-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffe1;
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .game-card h3 {
-      padding: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #1a1a1a;
-      color: #888;
-    }
-
-    /* Modal Forms */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
-
-    .modal-content {
-      background-color: #1a1a1a;
-      margin: 10% auto;
-      padding: 30px;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 10px;
-    }
-
-    .modal-content h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #00ffe1;
-    }
-
-    .modal-content input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      background: #2a2a2a;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-    }
-
-    .modal-content button {
-      width: 100%;
-      padding: 10px;
-      background-color: #00ffe1;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .close {
-      color: #fff;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        margin-top: 10px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Game Zone</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f1a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #fc00ff;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 219, 222, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 219, 222, 0.4);
+        }
+        
+        /* Games Section */
+        .games {
+            padding: 5rem 5%;
+            background-color: #0f0f1a;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-title p {
+            color: #cccccc;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .game-card {
+            background: #1a1a2e;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .game-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .game-card:hover .game-img img {
+            transform: scale(1.1);
+        }
+        
+        .game-info {
+            padding: 1.5rem;
+        }
+        
+        .game-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .game-info p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .game-info .btn {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* News Section */
+        .news {
+            padding: 5rem 5%;
+            background-color: #16213e;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            background: #1a1a2e;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .news-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #fc00ff;
+            font-size: 0.9rem;
+        }
+        
+        .news-meta span {
+            margin-right: 1rem;
+        }
+        
+        .news-content p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            color: #00dbde;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: #fc00ff;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a0a12;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #1a1a2e;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #fc00ff;
+        }
+        
+        .copyright {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .games-grid, .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/50" alt="Game Zone Logo">
+            <h1>Epic Game Zone</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <header>
-    <h1>Rizz Core</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Games</a>
-      <a href="#">News</a>
-      <a href="#">Contact</a>
-      <button class="btn" onclick="openModal('loginModal')">Login</button>
-      <button class="btn" onclick="openModal('signupModal')">Sign Up</button>
-    </nav>
-  </header>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Welcome to the Ultimate Gaming Experience</h2>
+            <p>Discover the latest and greatest games, join our community of passionate gamers, and stay updated with gaming news and events.</p>
+            <a href="#games" class="btn">Explore Games</a>
+        </div>
+    </section>
 
-  <section class="section games-container">
-    <div class="game-card">
-      <img src="https://via.placeholder.com/250x150?text=GTA+V" alt="GTA V" />
-      <h3>GTA V</h3>
-    </div>
-    <div class="game-card">
-      <img src="https://via.placeholder.com/250x150?text=RDR2" alt="RDR2" />
-      <h3>Red Dead Redemption 2</h3>
-    </div>
-    <div class="game-card">
-      <img src="https://via.placeholder.com/250x150?text=FIFA+22" alt="FIFA 22" />
-      <h3>FIFA 22</h3>
-    </div>
-  </section>
+    <!-- Games Section -->
+    <section class="games" id="games">
+        <div class="section-title">
+            <h2>Featured Games</h2>
+            <p>Check out our curated selection of the hottest games right now</p>
+        </div>
+        <div class="games-grid">
+            <!-- Game Card 1 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://via.placeholder.com/400x200" alt="Cyber Legends">
+                </div>
+                <div class="game-info">
+                    <h3>Cyber Legends</h3>
+                    <p>Immerse yourself in a futuristic open-world RPG with stunning graphics and endless possibilities.</p>
+                    <a href="#" class="btn">Play Now</a>
+                </div>
+            </div>
+            
+            <!-- Game Card 2 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://via.placeholder.com/400x200" alt="Battle Royale Extreme">
+                </div>
+                <div class="game-info">
+                    <h3>Battle Royale Extreme</h3>
+                    <p>Join the ultimate survival challenge with 100 players in this action-packed shooter.</p>
+                    <a href="#" class="btn">Play Now</a>
+                </div>
+            </div>
+            
+            <!-- Game Card 3 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://via.placeholder.com/400x200" alt="Fantasy Quest">
+                </div>
+                <div class="game-info">
+                    <h3>Fantasy Quest</h3>
+                    <p>Embark on an epic adventure in a magical world filled with dragons, wizards, and ancient treasures.</p>
+                    <a href="#" class="btn">Play Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2025 Rizz Core. All rights reserved.
-  </footer>
+    <!-- News Section -->
+    <section class="news" id="news">
+        <div class="section-title">
+            <h2>Latest News</h2>
+            <p>Stay updated with the most recent happenings in the gaming world</p>
+        </div>
+        <div class="news-grid">
+            <!-- News Card 1 -->
+            <div class="news-card">
+                <div class="news-img">
+                    <img src="https://via.placeholder.com/400x200" alt="Game Update">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span>June 15, 2023</span>
+                        <span>Updates</span>
+                    </div>
+                    <h3>Major Update Released for Cyber Legends</h3>
+                    <p>The developers have just dropped a massive content update including new maps, characters, and gameplay mechanics.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            
+            <!-- News Card 2 -->
+            <div class="news-card">
+                <div class="news-img">
+                    <img src="https://via.placeholder.com/400x200" alt="Esports Tournament">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span>June 10, 2023</span>
+                        <span>Esports</span>
+                    </div>
+                    <h3>World Championship Finals This Weekend</h3>
+                    <p>The biggest Battle Royale Extreme tournament of the year concludes this weekend with a $2 million prize pool.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            
+            <!-- News Card 3 -->
+            <div class="news-card">
+                <div class="news-img">
+                    <img src="https://via.placeholder.com/400x200" alt="New Game Announcement">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span>June 5, 2023</span>
+                        <span>Announcement</span>
+                    </div>
+                    <h3>New Fantasy MMO Coming Next Year</h3>
+                    <p>Legendary game studio announces their new massively multiplayer online RPG set in a breathtaking fantasy world.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Login Modal -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('loginModal')">&times;</span>
-      <h2>Login</h2>
-      <input type="text" placeholder="Username or Email" />
-      <input type="password" placeholder="Password" />
-      <button>Login</button>
-    </div>
-  </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Epic Game Zone</div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#games">Games</a>
+                <a href="#news">News</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Epic Game Zone. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
-  <!-- Signup Modal -->
-  <div id="signupModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('signupModal')">&times;</span>
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button>Sign Up</button>
-    </div>
-  </div>
-
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = "block";
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-
-    // Close modal on outside click
-    window.onclick = function(event) {
-      const login = document.getElementById('loginModal');
-      const signup = document.getElementById('signupModal');
-      if (event.target == login) login.style.display = "none";
-      if (event.target == signup) signup.style.display = "none";
-    }
-  </script>
-
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 18, 0.9)';
+                header.style.padding = '0.5rem 5%';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)';
+                header.style.padding = '1rem 5%';
+            }
+        });
+        
+        // Game card animation on hover
+        const gameCards = document.querySelectorAll('.game-card');
+        gameCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+            });
+        });
+    </script>
 </body>
 </html>
