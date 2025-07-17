@@ -3,25 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic Game Zone</title>
+    <title>NEXUS GAMING | Next-Level Experience</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Poppins + Orbitron) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        /* Global Styles */
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --dark: #0f0c24;
+            --light: #f8f9fa;
+            --neon: #0ff0fc;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
         }
         
         body {
-            background-color: #0f0f1a;
-            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
             overflow-x: hidden;
+            position: relative;
         }
         
-        /* Header Styles */
+        /* ===== PARTICLE BACKGROUND ===== */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+        
+        /* ===== GLOW EFFECTS ===== */
+        .glow {
+            text-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon);
+        }
+        
+        /* ===== HEADER ===== */
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: rgba(15, 12, 36, 0.8);
+            backdrop-filter: blur(10px);
             padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
@@ -30,74 +60,54 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(110, 69, 226, 0.3);
         }
         
         .logo {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
         
         .logo img {
-            height: 50px;
-            margin-right: 10px;
+            height: 40px;
+            filter: drop-shadow(0 0 5px var(--primary));
         }
         
         .logo h1 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
-            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 800;
         }
         
-        nav ul {
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
             display: flex;
-            list-style: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-left: auto;
+            margin-right: 20px;
         }
         
-        nav ul li {
-            margin-left: 2rem;
-        }
-        
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        nav ul li a:hover {
-            color: #fc00ff;
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
+        /* ===== HERO SECTION ===== */
         .hero {
             height: 100vh;
-            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
             padding: 0 5%;
             position: relative;
+            overflow: hidden;
         }
         
         .hero::before {
@@ -107,504 +117,141 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: linear-gradient(90deg, rgba(15,12,36,0.8) 0%, rgba(15,12,36,0.5) 100%);
+            z-index: -1;
         }
         
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.7;
         }
         
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            color: #cccccc;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 219, 222, 0.3);
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 219, 222, 0.4);
-        }
-        
-        /* Games Section */
-        .games {
-            padding: 5rem 5%;
-            background-color: #0f0f1a;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .section-title p {
-            color: #cccccc;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
+        /* ===== 3D GAME CARDS ===== */
         .game-card {
-            background: #1a1a2e;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(110, 69, 226, 0.3);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.5s, box-shadow 0.5s;
         }
         
         .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(110, 69, 226, 0.3);
         }
         
-        .game-img {
-            height: 200px;
-            overflow: hidden;
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         
-        .game-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .game-card:hover .game-img img {
-            transform: scale(1.1);
-        }
-        
-        .game-info {
-            padding: 1.5rem;
-        }
-        
-        .game-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .game-info p {
-            color: #cccccc;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .game-info .btn {
-            padding: 0.5rem 1.5rem;
-            font-size: 0.9rem;
-        }
-        
-        /* News Section */
-        .news {
-            padding: 5rem 5%;
-            background-color: #16213e;
-        }
-        
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .news-card {
-            background: #1a1a2e;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .news-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .news-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .news-content {
-            padding: 1.5rem;
-        }
-        
-        .news-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .news-meta {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            color: #fc00ff;
-            font-size: 0.9rem;
-        }
-        
-        .news-meta span {
-            margin-right: 1rem;
-        }
-        
-        .news-content p {
-            color: #cccccc;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .read-more {
-            color: #00dbde;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .read-more:hover {
-            color: #fc00ff;
-        }
-        
-        /* Footer */
-        footer {
-            background: #0a0a12;
-            padding: 3rem 5%;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .footer-logo {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-        }
-        
-        .social-links {
-            display: flex;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: #1a1a2e;
-            border-radius: 50%;
-            margin: 0 0.5rem;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
-            transform: translateY(-3px);
-        }
-        
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: #cccccc;
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #fc00ff;
-        }
-        
-        .copyright {
-            color: #666666;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 1rem;
-            }
-            
-            .logo {
-                margin-bottom: 1rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem;
-            }
-            
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .games-grid, .news-grid {
-                grid-template-columns: 1fr;
-            }
+        .floating {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- ===== PARTICLE BACKGROUND ===== -->
+    <div id="particles-js"></div>
+    
+    <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">
-            <img src="https://via.placeholder.com/50" alt="Game Zone Logo">
-            <h1>Epic Game Zone</h1>
+            <img src="https://i.imgur.com/JqYeZLn.png" alt="Nexus Gaming Logo">
+            <h1>NEXUS GAMING</h1>
         </div>
+        
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+        
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link">HOME</a></li>
+                <li><a href="#games" class="nav-link">GAMES</a></li>
+                <li><a href="#esports" class="nav-link">ESPORTS</a></li>
+                <li><a href="#news" class="nav-link">NEWS</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
             </ul>
         </nav>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>Welcome to the Ultimate Gaming Experience</h2>
-            <p>Discover the latest and greatest games, join our community of passionate gamers, and stay updated with gaming news and events.</p>
-            <a href="#games" class="btn">Explore Games</a>
-        </div>
-    </section>
-
-    <!-- Games Section -->
-    <section class="games" id="games">
-        <div class="section-title">
-            <h2>Featured Games</h2>
-            <p>Check out our curated selection of the hottest games right now</p>
-        </div>
-        <div class="games-grid">
-            <!-- Game Card 1 -->
-            <div class="game-card">
-                <div class="game-img">
-                    <img src="https://via.placeholder.com/400x200" alt="Cyber Legends">
-                </div>
-                <div class="game-info">
-                    <h3>Cyber Legends</h3>
-                    <p>Immerse yourself in a futuristic open-world RPG with stunning graphics and endless possibilities.</p>
-                    <a href="#" class="btn">Play Now</a>
-                </div>
-            </div>
-            
-            <!-- Game Card 2 -->
-            <div class="game-card">
-                <div class="game-img">
-                    <img src="https://via.placeholder.com/400x200" alt="Battle Royale Extreme">
-                </div>
-                <div class="game-info">
-                    <h3>Battle Royale Extreme</h3>
-                    <p>Join the ultimate survival challenge with 100 players in this action-packed shooter.</p>
-                    <a href="#" class="btn">Play Now</a>
-                </div>
-            </div>
-            
-            <!-- Game Card 3 -->
-            <div class="game-card">
-                <div class="game-img">
-                    <img src="https://via.placeholder.com/400x200" alt="Fantasy Quest">
-                </div>
-                <div class="game-info">
-                    <h3>Fantasy Quest</h3>
-                    <p>Embark on an epic adventure in a magical world filled with dragons, wizards, and ancient treasures.</p>
-                    <a href="#" class="btn">Play Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- News Section -->
-    <section class="news" id="news">
-        <div class="section-title">
-            <h2>Latest News</h2>
-            <p>Stay updated with the most recent happenings in the gaming world</p>
-        </div>
-        <div class="news-grid">
-            <!-- News Card 1 -->
-            <div class="news-card">
-                <div class="news-img">
-                    <img src="https://via.placeholder.com/400x200" alt="Game Update">
-                </div>
-                <div class="news-content">
-                    <div class="news-meta">
-                        <span>June 15, 2023</span>
-                        <span>Updates</span>
-                    </div>
-                    <h3>Major Update Released for Cyber Legends</h3>
-                    <p>The developers have just dropped a massive content update including new maps, characters, and gameplay mechanics.</p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </div>
-            
-            <!-- News Card 2 -->
-            <div class="news-card">
-                <div class="news-img">
-                    <img src="https://via.placeholder.com/400x200" alt="Esports Tournament">
-                </div>
-                <div class="news-content">
-                    <div class="news-meta">
-                        <span>June 10, 2023</span>
-                        <span>Esports</span>
-                    </div>
-                    <h3>World Championship Finals This Weekend</h3>
-                    <p>The biggest Battle Royale Extreme tournament of the year concludes this weekend with a $2 million prize pool.</p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </div>
-            
-            <!-- News Card 3 -->
-            <div class="news-card">
-                <div class="news-img">
-                    <img src="https://via.placeholder.com/400x200" alt="New Game Announcement">
-                </div>
-                <div class="news-content">
-                    <div class="news-meta">
-                        <span>June 5, 2023</span>
-                        <span>Announcement</span>
-                    </div>
-                    <h3>New Fantasy MMO Coming Next Year</h3>
-                    <p>Legendary game studio announces their new massively multiplayer online RPG set in a breathtaking fantasy world.</p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">Epic Game Zone</div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-discord"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#games">Games</a>
-                <a href="#news">News</a>
-                <a href="#about">About Us</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-            <div class="copyright">
-                &copy; 2023 Epic Game Zone. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
-    <!-- Custom JavaScript -->
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-computer-keyboard-12232-large.mp4" type="video/mp4">
+        </video>
         
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 18, 0.9)';
-                header.style.padding = '0.5rem 5%';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)';
-                header.style.padding = '1rem 5%';
+        <div class="hero-content">
+            <h2 class="animate__animated animate__fadeInDown">ENTER THE <span class="glow">NEXUS</span></h2>
+            <p class="animate__animated animate__fadeIn animate__delay-1s">Where elite gamers rise and legends are born</p>
+            <button class="btn animate__animated animate__fadeInUp animate__delay-2s">JOIN THE ARENA</button>
+        </div>
+    </section>
+    
+    <!-- ===== GAMES SECTION ===== -->
+    <section class="games-section" id="games">
+        <!-- 3D Game Cards Will Go Here -->
+    </section>
+    
+    <!-- ===== JavaScript Libraries ===== -->
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- GSAP for Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    
+    <script>
+        // ===== PARTICLE BACKGROUND =====
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#6e45e2" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#6e45e2", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
             }
         });
         
-        // Game card animation on hover
-        const gameCards = document.querySelectorAll('.game-card');
-        gameCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // ===== 3D CARD EFFECTS =====
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
             });
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateY(0deg) rotateX(0deg)';
             });
         });
     </script>
